@@ -6,4 +6,181 @@
     android:layout_height="match_parent"
     tools:context=".Pengaturan">
 
+    <TextView
+        android:id="@+id/labelPengaturan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pengaturan"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="20dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="20dp"
+        android:textSize="20dp"
+        />
+
+    <TextView
+        android:id="@+id/labelGantiPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ganti Password"
+        app:layout_constraintTop_toBottomOf="@+id/labelPengaturan"
+        android:layout_marginTop="20dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="20dp"
+        android:textSize="20dp"
+        />
+
+    <TextView
+        android:id="@+id/labelNominal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Password Lama:"
+        app:layout_constraintTop_toBottomOf="@+id/labelGantiPassword"
+        android:textSize="20dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="21dp"
+        android:layout_marginVertical="20dp"
+
+        />
+
+    <EditText
+        android:layout_marginVertical="10dp"
+        android:id="@+id/nominal_pemasukan"
+        app:layout_constraintTop_toBottomOf="@+id/labelNominal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="21dp"
+        android:hint="Masukkan Password Lama"
+        android:textSize="20dp"
+        android:inputType="textPassword"
+        android:width="350dp"
+        />
+
+    <TextView
+        android:id="@+id/labelKeterangan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Password Baru:"
+        app:layout_constraintTop_toBottomOf="@+id/nominal_pemasukan"
+        android:textSize="20dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="21dp"
+        android:layout_marginVertical="20dp"
+        />
+
+    <EditText
+        android:layout_marginVertical="10dp"
+        android:id="@+id/keterangan_pemasukan"
+        app:layout_constraintTop_toBottomOf="@+id/labelKeterangan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="21dp"
+        android:textSize="20dp"
+        android:width="350dp"
+        android:inputType="text"
+        android:hint="Masukkan Password Baru"
+        />
+
+    <Button
+        android:id="@+id/btnSimpan"
+        android:layout_width="380dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/keterangan_pemasukan"
+        android:layout_marginVertical="20dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:text="Simpan"
+        />
+
+    <Button
+        android:id="@+id/btnKembali"
+        android:layout_width="380dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/btnSimpan"
+        android:layout_marginVertical="10dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:text="Kembali"
+        />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/btnKembali"
+        app:cardCornerRadius="4dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginVertical="50dp"
+        tools:ignore="MissingConstraints">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="2dp"
+            >
+
+            <ImageView
+                android:id="@+id/gambarMahasiswa"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:padding="2dp"
+                android:layout_marginRight="30dp"
+                android:background="@color/green"
+                />
+
+            <TextView
+                android:id="@+id/labelAboutThisApp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="About This App"
+                android:textColor="@android:color/black"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_toEndOf="@+id/gambarMahasiswa"/>
+
+            <TextView
+                android:id="@+id/labelDibuatOleh"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Aplikasi ini dibuat oleh:"
+                android:textSize="15sp"
+                android:layout_marginVertical="10dp"
+                android:textStyle="bold"
+                android:layout_below="@+id/labelAboutThisApp"
+                android:layout_toEndOf="@+id/gambarMahasiswa"
+                />
+
+            <TextView
+                android:id="@+id/ketNamaMahasiswa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nama    : Sulthan Rafif"
+                android:textSize="15sp"
+                android:layout_below="@id/labelDibuatOleh"
+                android:layout_toEndOf="@+id/gambarMahasiswa"
+                />
+
+            <TextView
+                android:id="@+id/ketNIM"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="NIM       : 1741720158"
+                android:textSize="15sp"
+                android:layout_below="@id/ketNamaMahasiswa"
+                android:layout_toEndOf="@+id/gambarMahasiswa"
+                />
+
+            <TextView
+                android:id="@+id/ketTanggalDibuat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tanggal : 22-10-2021"
+                android:textSize="15sp"
+                android:layout_below="@id/ketNIM"
+                android:layout_toEndOf="@+id/gambarMahasiswa"
+                />
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
