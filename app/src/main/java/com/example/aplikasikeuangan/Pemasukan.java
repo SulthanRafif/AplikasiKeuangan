@@ -29,7 +29,11 @@ public class Pemasukan extends AppCompatActivity {
 
     private String date;
 
-    int nominal_pemasukan = 0;
+    private int nominal_pemasukan = 0;
+
+    private String pemasukan;
+    private String keterangan_pemasukan;
+    private String tanggal_pemasukan;
 
     DatePickerDialog.OnDateSetListener setListener;
 
@@ -50,32 +54,34 @@ public class Pemasukan extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                String keterangan_pemasukan = editTextKeterangan.getText().toString();
-                String tanggal_pemasukan = date;
+                keterangan_pemasukan = editTextKeterangan.getText().toString();
+                tanggal_pemasukan = date;
+                pemasukan = editTextNominal.getText().toString();
 
-                if (keterangan_pemasukan.isEmpty() || tanggal_pemasukan.isEmpty()) {
-                    Log.d("DATA KOSONG", "DATA TIDAK DIMASUKKAN");
-                } else {
-                    nominal_pemasukan = Integer.parseInt(editTextNominal.getText().toString());
+                try{
+                    if (keterangan_pemasukan.isEmpty() || tanggal_pemasukan.isEmpty() || pemasukan.isEmpty()) {
+                        Log.d("DATA KOSONG", "DATA TIDAK DIMASUKKAN");
+                        Toast.makeText(getBaseContext(), "Nominal Pemasukan & Tanggal Pemasukan & Keterangan Pemasukan Harus Diisi", Toast.LENGTH_SHORT).show();
+                    } else {
+                        nominal_pemasukan = Integer.parseInt(pemasukan);
 
-                    CashItem cashItem = new CashItem(nominal_pemasukan, keterangan_pemasukan, tanggal_pemasukan, 1);
+                        Log.d("NOMINAL PEMASUKAN_1", Integer.toString(nominal_pemasukan) );
+                        Log.d("KETERANGAN PEMASUKAN_1", keterangan_pemasukan );
+                        Log.d("TANGGAL PEMASUKAN_1", tanggal_pemasukan );
 
-                    Log.d("NOMINAL PEMASUKAN_1", Integer.toString(nominal_pemasukan) );
-                    Log.d("KETERANGAN PEMASUKAN_1", keterangan_pemasukan );
-                    Log.d("TANGGAL PEMASUKAN_1", tanggal_pemasukan );
+                        Intent intent = new Intent(getBaseContext(), CashFlow.class);
+                        intent.putExtra("NOMINAL", nominal_pemasukan);
+                        intent.putExtra("KETERANGAN", keterangan_pemasukan);
+                        intent.putExtra("TANGGAL", tanggal_pemasukan);
+                        intent.putExtra("STATUS", 1);
+                        startActivity(intent);
+                        Toast.makeText(getBaseContext(), "Data Berhasil Dimasukkan!", Toast.LENGTH_SHORT).show();
 
-                    Log.d("CASH ITEM_KET", cashItem.getKeterangan());
-                    Log.d("CASH ITEM_NOM", Integer.toString(cashItem.getNominal()));
-                    Log.d("CASH ITEM_TGL", cashItem.getTanggal());
+                    }
+                }
 
-
-                    Intent intent = new Intent(getBaseContext(), CashFlow.class);
-                    intent.putExtra("NOMINAL", nominal_pemasukan);
-                    intent.putExtra("KETERANGAN", keterangan_pemasukan);
-                    intent.putExtra("TANGGAL", tanggal_pemasukan);
-                    intent.putExtra("STATUS", 1);
-                    startActivity(intent);
-
+                catch(Exception e)  {
+                    Toast.makeText(getBaseContext(), "Nominal Pemasukan & Tanggal Pemasukan & Keterangan Pemasukan Harus Diisi", Toast.LENGTH_SHORT).show();
                 }
 
             }

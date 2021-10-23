@@ -65,7 +65,6 @@ public class CashFlow extends AppCompatActivity {
 
             CashItem cashItem = new CashItem(nominal, keterangan, tanggal_pemasukan, status);
             cashViewModel.insert(cashItem);
-            Toast.makeText(this, "Data Berhasil Dimasukkan", Toast.LENGTH_SHORT).show();
         }
     }
 }
