@@ -18,14 +18,20 @@ import java.util.Date;
 
 public class Pemasukan extends AppCompatActivity {
 
-    TextView tvDate;
-    EditText etDate;
+    private EditText etDate;
+    private EditText editTextNominal;
+    private EditText editTextKeterangan;
+
     DatePickerDialog.OnDateSetListener setListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pemasukan);
+
+        editTextNominal = findViewById(R.id.nominal_pemasukan);
+        editTextKeterangan = findViewById(R.id.keterangan_pemasukan);
 
         Button btnKembali = findViewById(R.id.btnKembaliPemasukan);
 

@@ -1,6 +1,8 @@
 package com.example.aplikasikeuangan;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -9,12 +11,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class CashFlow extends AppCompatActivity {
-    private RecyclerView mRecycleView;
-    private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
+    private CashViewModel cashViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,27 +31,21 @@ public class CashFlow extends AppCompatActivity {
             }
         });
 
-        ArrayList<CashDetailItem> cashFlowItem = new ArrayList<>();
-        cashFlowItem.add(new CashDetailItem(R.drawable.arrow_income, "[ + ] Rp 500.000", "Dapet Sangu Dari Ayah", "25-25-2021"));
-        cashFlowItem.add(new CashDetailItem(R.drawable.arrow_outcome, "[ - ] Rp 400.000", "Sangu Diambil Ibu", "26-25-2021"));
-        cashFlowItem.add(new CashDetailItem(R.drawable.arrow_income, "[ + ] Rp 300.000", "Dapet Sangu Dari Kakak", "27-25-2021"));
-        cashFlowItem.add(new CashDetailItem(R.drawable.arrow_income, "[ + ] Rp 500.000", "Dapet Sangu Dari Ayah", "25-25-2021"));
-        cashFlowItem.add(new CashDetailItem(R.drawable.arrow_outcome, "[ - ] Rp 400.000", "Sangu Diambil Ibu", "26-25-2021"));
-        cashFlowItem.add(new CashDetailItem(R.drawable.arrow_income, "[ + ] Rp 300.000", "Dapet Sangu Dari Kakak", "27-25-2021"));
-        cashFlowItem.add(new CashDetailItem(R.drawable.arrow_income, "[ + ] Rp 500.000", "Dapet Sangu Dari Ayah", "25-25-2021"));
-        cashFlowItem.add(new CashDetailItem(R.drawable.arrow_outcome, "[ - ] Rp 400.000", "Sangu Diambil Ibu", "26-25-2021"));
-        cashFlowItem.add(new CashDetailItem(R.drawable.arrow_income, "[ + ] Rp 300.000", "Dapet Sangu Dari Kakak", "27-25-2021"));
-        cashFlowItem.add(new CashDetailItem(R.drawable.arrow_income, "[ + ] Rp 500.000", "Dapet Sangu Dari Ayah", "25-25-2021"));
-        cashFlowItem.add(new CashDetailItem(R.drawable.arrow_outcome, "[ - ] Rp 400.000", "Sangu Diambil Ibu", "26-25-2021"));
-        cashFlowItem.add(new CashDetailItem(R.drawable.arrow_income, "[ + ] Rp 300.000", "Dapet Sangu Dari Kakak", "27-25-2021"));
 
-        mRecycleView = findViewById(R.id.recycleView);
-        mRecycleView.setHasFixedSize(true);
-        mLayoutManager = new LinearLayoutManager(this);
-        mAdapter = new CashDetailItemAdapter(cashFlowItem);
+        RecyclerView recyclerView = findViewById(R.id.recycleView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setHasFixedSize(true);
 
-        mRecycleView.setLayoutManager(mLayoutManager);
-        mRecycleView.setAdapter(mAdapter);
+        final CashDetailItemAdapter cashAdapter = new CashDetailItemAdapter();
+        recyclerView.setAdapter(cashAdapter);
+
+        cashViewModel = (CashViewModel) new ViewModelProvider(this).get(CashViewModel.class);
+        cashViewModel.getAllCashItem().observe(this, new Observer<List<CashItem>>() {
+            @Override
+            public void onChanged(List<CashItem> cashItems) {
+                cashAdapter.setCashItems(cashItems);
+            }
+        });
 
     }
 }

@@ -6,19 +6,63 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class CashDetailItemAdapter extends RecyclerView.Adapter<CashDetailItemAdapter.ExampleViewHolder> {
-    private ArrayList<CashDetailItem> mCashDetailItem;
+    private List<CashItem> cashItems = new ArrayList<>();
 
-    public static class ExampleViewHolder extends RecyclerView.ViewHolder {
+    int Pemasukan = 0;
 
-        public ImageView gambarPanah;
-        public TextView ketNominal;
-        public TextView ketKeterangan;
-        public TextView ketTanggal;
+    @NonNull
+    @Override
+    public ExampleViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.cash_detail, parent, false);
+        ExampleViewHolder evh = new ExampleViewHolder(v);
+        return evh;
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull ExampleViewHolder holder, int position) {
+        CashItem currentItem = cashItems.get(position);
+
+        Pemasukan = currentItem.getIncome();
+
+        if(Pemasukan == 1) {
+            holder.gambarPanah.setImageResource(R.drawable.arrow_income);
+            holder.ketNominal.setText(Integer.toString(currentItem.getNominal()));
+            holder.ketKeterangan.setText(currentItem.getKeterangan());
+            holder.ketTanggal.setText(currentItem.getTanggal());
+        }
+
+        else if(Pemasukan == 0){
+            holder.gambarPanah.setImageResource(R.drawable.arrow_outcome);
+            holder.ketNominal.setText(Integer.toString(currentItem.getNominal()));
+            holder.ketKeterangan.setText(currentItem.getKeterangan());
+            holder.ketTanggal.setText(currentItem.getTanggal());
+        }
+
+    }
+
+    public void setCashItems(List<CashItem> cashItems) {
+        this.cashItems = cashItems;
+        notifyDataSetChanged();
+    }
+
+    @Override
+    public int getItemCount() {
+        return cashItems.size();
+    }
+
+    class ExampleViewHolder extends RecyclerView.ViewHolder {
+
+        private ImageView gambarPanah;
+        private TextView ketNominal;
+        private TextView ketKeterangan;
+        private TextView ketTanggal;
 
         public ExampleViewHolder(View itemView) {
             super(itemView);
@@ -29,29 +73,5 @@ public class CashDetailItemAdapter extends RecyclerView.Adapter<CashDetailItemAd
         }
     }
 
-    public CashDetailItemAdapter(ArrayList<CashDetailItem> CashDetailItemList) {
-        mCashDetailItem = CashDetailItemList;
-    }
 
-    @Override
-    public ExampleViewHolder onCreateViewHolder( ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.cash_detail, parent, false);
-        ExampleViewHolder evh = new ExampleViewHolder(v);
-        return evh;
-    }
-
-    @Override
-    public void onBindViewHolder(ExampleViewHolder holder, int position) {
-        CashDetailItem currentItem = mCashDetailItem.get(position);
-
-        holder.gambarPanah.setImageResource(currentItem.getGambarPanah());
-        holder.ketNominal.setText(currentItem.getKetNominal());
-        holder.ketKeterangan.setText(currentItem.getKetKeterangan());
-        holder.ketTanggal.setText(currentItem.getKetTanggal());
-    }
-
-    @Override
-    public int getItemCount() {
-        return mCashDetailItem.size();
-    }
 }
