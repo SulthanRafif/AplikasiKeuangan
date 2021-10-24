@@ -21,38 +21,37 @@ public class CashRepository {
 
         totalPemasukan = cashItemDao.getJumlahPemasukan();
         totalPengeluaran = cashItemDao.getJumlahPengeluaran();
-
     }
 
-    public void insert(CashItem cashItem){
+    public void insert(CashItem cashItem) {
         new InsertCashAsyncTask(cashItemDao).execute(cashItem);
     }
 
-    public void update(CashItem cashItem){
+    public void update(CashItem cashItem) {
         new UpdateNoteAsyncTask(cashItemDao).execute(cashItem);
     }
 
-    public void delete(CashItem cashItem){
-        new  DeleteCashAsyncTask(cashItemDao).execute(cashItem);
+    public void delete(CashItem cashItem) {
+        new DeleteCashAsyncTask(cashItemDao).execute(cashItem);
     }
 
     public void deleteAllCash() {
-        new  DeleteAllCashAsyncTask(cashItemDao).execute();
+        new DeleteAllCashAsyncTask(cashItemDao).execute();
     }
 
     public int getJumlahPemasukan() {
         return totalPemasukan;
     }
 
-    public int getJumlahPengeluaran(){
+    public int getJumlahPengeluaran() {
         return totalPengeluaran;
     }
 
-    public LiveData<List<CashItem>> getAllCashItem(){
+    public LiveData<List<CashItem>> getAllCashItem() {
         return allCashItem;
     }
 
-    private static class InsertCashAsyncTask extends AsyncTask<CashItem,  Void, Void> {
+    private static class InsertCashAsyncTask extends AsyncTask<CashItem, Void, Void> {
         private CashItemDao cashItemDao;
 
         private InsertCashAsyncTask(CashItemDao cashItemDao) {
@@ -66,7 +65,7 @@ public class CashRepository {
         }
     }
 
-    private static class UpdateNoteAsyncTask extends AsyncTask<CashItem,  Void, Void> {
+    private static class UpdateNoteAsyncTask extends AsyncTask<CashItem, Void, Void> {
         private CashItemDao cashItemDao;
 
         private UpdateNoteAsyncTask(CashItemDao cashItemDao) {
@@ -80,7 +79,7 @@ public class CashRepository {
         }
     }
 
-    private static class DeleteCashAsyncTask extends AsyncTask<CashItem,  Void, Void> {
+    private static class DeleteCashAsyncTask extends AsyncTask<CashItem, Void, Void> {
         private CashItemDao cashItemDao;
 
         private DeleteCashAsyncTask(CashItemDao cashItemDao) {
@@ -94,7 +93,7 @@ public class CashRepository {
         }
     }
 
-    private static class DeleteAllCashAsyncTask extends AsyncTask<Void,  Void, Void> {
+    private static class DeleteAllCashAsyncTask extends AsyncTask<Void, Void, Void> {
         private CashItemDao cashItemDao;
 
         private DeleteAllCashAsyncTask(CashItemDao cashItemDao) {
