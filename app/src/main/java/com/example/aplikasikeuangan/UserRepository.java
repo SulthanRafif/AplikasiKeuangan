@@ -14,6 +14,7 @@ public class UserRepository {
 
     private String username;
     private String password;
+    private int id;
 
     public UserRepository(Application application) {
         UserDatabase database = UserDatabase.getInstance(application);
@@ -22,6 +23,7 @@ public class UserRepository {
 
         username = userItemDao.getUsername();
         password = userItemDao.getPassword();
+        id = userItemDao.getId();
     }
 
     public void insert(UserItem userItem) {
@@ -30,6 +32,10 @@ public class UserRepository {
 
     public void update(UserItem userItem) {
         new UpdateUserAsyncTask(userItemDao).execute(userItem);
+    }
+
+    public int getId() {
+        return  id;
     }
 
     public String getUsername() {

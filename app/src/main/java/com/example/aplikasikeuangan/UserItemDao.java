@@ -26,4 +26,7 @@ public interface UserItemDao {
     @Query("SELECT password FROM user_table")
     String getPassword();
 
+    @Query("SELECT id FROM user_table")
+    int getId();
+
 }

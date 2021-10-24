@@ -15,6 +15,7 @@ public class UserViewModel extends AndroidViewModel {
 
     private String username;
     private String password;
+    private int id;
 
     public UserViewModel(@NonNull Application application) {
         super(application);
@@ -22,11 +23,16 @@ public class UserViewModel extends AndroidViewModel {
         allUserItem = repository.getAllUserItem();
         username = repository.getUsername();
         password = repository.getPassword();
+        id = repository.getId();
     }
 
     public void insert(UserItem userItem) { repository.insert(userItem); }
 
     public void update(UserItem  userItem)  { repository.update(userItem); }
+
+    public int getId() {
+        return id;
+    }
 
     public String getUsername() {
         return username;

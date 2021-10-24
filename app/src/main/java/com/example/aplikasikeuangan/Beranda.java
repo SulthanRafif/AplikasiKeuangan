@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class Beranda extends AppCompatActivity {
 
@@ -51,6 +52,7 @@ public class Beranda extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(Beranda.this, Login.class));
+                Toast.makeText(getBaseContext(), "Anda Berhasil Logout", Toast.LENGTH_SHORT).show();
             }
         });
 

@@ -5,6 +5,8 @@ import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -25,6 +27,8 @@ public class Login extends AppCompatActivity {
 
     private String usernameMasuk;
     private String passwordMasuk;
+
+    boolean doubleBackToExitPressedOnce = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,8 +56,13 @@ public class Login extends AppCompatActivity {
                 usernameMasuk = textUsername.getText().toString();
                 passwordMasuk = textPassword.getText().toString();
 
-                if(usernameMasuk.equals(username) && passwordMasuk.equals(password)) {
+                if(usernameMasuk.isEmpty() || passwordMasuk.isEmpty()) {
+                    Toast.makeText(getBaseContext(), "Masukkan Username Dan Password Terlebih Dahulu", Toast.LENGTH_SHORT).show();
+                }
+
+                else if(usernameMasuk.equals(username) && passwordMasuk.equals(password)) {
                     startActivity(new Intent(Login.this, Beranda.class));
+                    Toast.makeText(getBaseContext(), "Anda Berhasil Login", Toast.LENGTH_SHORT).show();
                 }
 
                 else {
@@ -61,6 +70,28 @@ public class Login extends AppCompatActivity {
                 }
             }
         });
+    }
 
+    @Override
+    public void onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            super.onBackPressed();
+            Intent intent = new Intent(Intent.ACTION_MAIN);
+            intent.addCategory(Intent.CATEGORY_HOME);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+            return;
+        }
+
+        this.doubleBackToExitPressedOnce = true;
+        Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
+
+        new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                doubleBackToExitPressedOnce=false;
+            }
+        }, 2000);
     }
 }
