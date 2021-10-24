@@ -38,9 +38,6 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
-//    implementation 'androidx.appcompat:design:1.3.1'
-//    implementation 'androidx.appcompat:cardview:1.3.1'
-
     // Lifecycle components
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
     //noinspection LifecycleAnnotationProcessorWithJava8
@@ -50,6 +47,7 @@ dependencies {
     implementation "androidx.room:room-runtime:$room_version"
     annotationProcessor "androidx.room:room-compiler:$room_version"
 
-
+    // Chart
+     implementation 'com.github.AnyChart:AnyChart-Android:1.1.2'
 
 }
