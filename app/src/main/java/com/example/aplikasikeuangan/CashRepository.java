@@ -11,10 +11,17 @@ public class CashRepository {
     private CashItemDao cashItemDao;
     private LiveData<List<CashItem>> allCashItem;
 
+    private int totalPemasukan;
+    private int totalPengeluaran;
+
     public CashRepository(Application application) {
         CashDatabase database = CashDatabase.getInstance(application);
         cashItemDao = database.cashItemDao();
         allCashItem = cashItemDao.getAllCash();
+
+        totalPemasukan = cashItemDao.getJumlahPemasukan();
+        totalPengeluaran = cashItemDao.getJumlahPengeluaran();
+
     }
 
     public void insert(CashItem cashItem){
@@ -31,6 +38,14 @@ public class CashRepository {
 
     public void deleteAllCash() {
         new  DeleteAllCashAsyncTask(cashItemDao).execute();
+    }
+
+    public int getJumlahPemasukan() {
+        return totalPemasukan;
+    }
+
+    public int getJumlahPengeluaran(){
+        return totalPengeluaran;
     }
 
     public LiveData<List<CashItem>> getAllCashItem(){

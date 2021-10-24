@@ -21,6 +21,7 @@ public abstract class CashDatabase extends RoomDatabase {
                     CashDatabase.class, "cash_database")
                     .fallbackToDestructiveMigration()
                     .addCallback(roomCallBack)
+                    .allowMainThreadQueries()
                     .build();
         }
         return instance;

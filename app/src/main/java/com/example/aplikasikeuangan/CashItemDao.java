@@ -24,6 +24,13 @@ public interface CashItemDao {
     @Query("DELETE FROM cash_table")
     void deleteAllCash();
 
+    @Query("SELECT sum(nominal) FROM cash_table WHERE income = 1")
+    int getJumlahPemasukan();
+
+    @Query("SELECT sum(nominal) FROM cash_table WHERE income = 0")
+    int getJumlahPengeluaran();
+
     @Query("SELECT * FROM cash_table ORDER BY tanggal DESC")
     LiveData<List<CashItem>> getAllCash();
+
 }

@@ -28,7 +28,6 @@ public class CashFlow extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cash_flow);
 
-
         Button btnKembali = findViewById(R.id.btnKembaliCashFlow);
 
         btnKembali.setOnClickListener(new View.OnClickListener() {
@@ -38,7 +37,6 @@ public class CashFlow extends AppCompatActivity {
                 startActivity(new Intent(CashFlow.this, Beranda.class));
             }
         });
-
 
         RecyclerView recyclerView = findViewById(R.id.recycleView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
