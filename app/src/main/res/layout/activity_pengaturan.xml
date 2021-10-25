@@ -125,7 +125,7 @@
                 android:layout_height="150dp"
                 android:padding="2dp"
                 android:layout_marginRight="30dp"
-                android:background="@color/green"
+                android:src="@drawable/foto_profil"
                 />
 
             <TextView
